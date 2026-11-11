@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#0e1113">
+<meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes">
+<title>SENYAP — Zombie Survival</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script defer src="https://cdn.jsdelivr.net/npm/peerjs@1.5.4/dist/peerjs.min.js"></script>
+</head>
+<body>
+<canvas id="cv"></canvas>
+
+<div id="hud" class="hidden">
+  <div id="topbar">
+    <div id="clock"><b id="dayN">HARI 1</b><span id="clk">06:00</span><i id="phaseIc">☀️</i></div>
+    <div id="obj"></div>
+  </div>
+  <div id="sysbtns">
+    <button data-a="pause" title="Menu (Esc)">☰</button>
+    <button data-a="panel" title="Tas & Racik (Tab)">🎒</button>
+    <button data-a="pov" title="Ganti sudut pandang (V)">👁 <small id="povLbl">ATAS</small></button>
+  </div>
+  <div id="stats">
+    <div class="st" id="sHp"><span>❤</span><div class="bar"><i></i></div><b>100</b></div>
+    <div class="st" id="sSt"><span>⚡</span><div class="bar"><i></i></div></div>
+    <div class="st" id="sHu"><span>🍚</span><div class="bar"><i></i></div></div>
+    <div class="st" id="sTh"><span>💧</span><div class="bar"><i></i></div></div>
+    <div class="st hidden" id="sInf"><span>☣</span><div class="bar"><i></i></div></div>
+    <div id="chips"></div>
+  </div>
+  <div id="noise"><small>SUARA</small><div id="nbars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+  <div id="hot"></div>
+  <div id="prompt" class="hidden"></div>
+  <div id="actbar" class="hidden"><i></i><span>Menggeledah…</span></div>
+  <div id="toasts"></div>
+  <div id="banner"></div>
+  <div id="dead" class="hidden"><h2>KAMU MATI</h2><p id="deadTxt"></p></div>
+  <div id="touch" class="hidden">
+    <div id="lz"><div id="lstick" class="stick hidden"><i></i></div></div>
+    <div id="rstick" class="stick"><i></i></div>
+    <button class="tb" id="tAtk">⚔</button>
+    <button class="tb" id="tInt">✋</button>
+    <button class="tb" id="tRl">↻</button>
+    <button class="tb tog" id="tSp">🏃</button>
+    <button class="tb tog" id="tSn">🤫</button>
+    <button class="tb tog" id="tFl">🔦</button>
+  </div>
+</div>
+
+<div id="panel" class="hidden">
+  <div class="pwrap">
+    <button id="pClose">✕</button>
+    <div class="pcol">
+      <h3>TAS <small id="invCap"></small></h3>
+      <div id="invGrid" class="grid"></div>
+      <div id="itemInfo"></div>
+      <div id="crateBox" class="hidden"><h3>PETI SIMPAN <small>ketuk untuk ambil</small></h3><div id="crateGrid" class="grid"></div></div>
+    </div>
+    <div class="pcol">
+      <h3>RACIK <small id="stnLbl"></small></h3>
+      <div id="tabs"></div>
+      <div id="recipes"></div>
+    </div>
+  </div>
+</div>
+
+<div id="menu">
+  <div class="mcard">
+    <div class="logo"><h1>SENYAP</h1><svg viewBox="0 0 300 24" preserveAspectRatio="none"><polyline points="0,12 40,12 48,3 56,21 64,6 72,18 80,12 110,12 116,8 122,16 128,12 300,12" /></svg><p>Mereka mendengar segalanya.</p></div>
+    <div class="mrow"><label>NAMA</label><input id="inName" maxlength="12" placeholder="Penyintas"></div>
+    <div class="mrow"><label>SUDUT PANDANG</label><div id="povPick"><button data-p="top" class="on">ATAS</button><button data-p="iso">ISOMETRIK</button><button data-p="fps">MATA</button></div></div>
+    <div class="mrow"><label>KESULITAN</label><div id="diffPick" class="pick"><button data-d="0">PENYINTAS</button><button data-d="1">KERAS</button><button data-d="2">MIMPI BURUK</button></div></div>
+    <button class="big primary" id="bSolo">MAIN SENDIRI <small>dunia baru</small></button>
+    <button class="big hidden" id="bCont">LANJUTKAN <small id="contTxt"></small></button>
+    <button class="big" id="bHost">BUAT ROOM <small>main online bersama teman</small></button>
+    <div class="mrow join"><input id="inCode" maxlength="5" placeholder="KODE"><button class="big" id="bJoin">GABUNG</button></div>
+    <button class="link" id="bHelp">Cara bermain</button>
+    <div id="menuMsg"></div>
+  </div>
+</div>
+
+<div id="dlg" class="hidden"><div class="dcard" id="dcard"></div></div>
+
+<script src="js/data.js"></script>
+<script src="js/world.js"></script>
+<script src="js/game.js"></script>
+<script src="js/audio.js"></script>
+<script src="js/render.js"></script>
+<script src="js/net.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
